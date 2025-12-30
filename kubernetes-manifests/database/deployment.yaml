@@ -15,7 +15,6 @@ spec:
     spec: 
       containers:
       - name: postgres
-        # تم تصحيح اسم الصورة هنا
         image: postgres:15-alpine
         ports:
         - containerPort: 5432
@@ -32,6 +31,9 @@ spec:
                 key: password
           - name: POSTGRES_DB
             value: mydatabase
+          # السطر السحري الذي سيحل المشكلة الآن
+          - name: PGDATA
+            value: /var/lib/postgresql/data/pgdata
         volumeMounts:
           - name: postgres-volume
             mountPath: /var/lib/postgresql/data
